@@ -1,0 +1,31 @@
+Docker: 
+ docker build . -t sklearn_flask_docker     
+ docker run -p 5000:5000 sklearn_flask_docker
+
+Docker-compose: 
+ docker-compose up 
+
+Kubernetes
+minikube image load sklearn_flask_docker
+kubectl apply -f .\kubernetes\flask_deployment.yaml
+kubectl get deploy
+kubectl get pod
+kubectl logs PODNAME
+
+kubectl scale deployment flask-app --replicas=10
+
+
+kubectl apply -f .\kubernetes\flask_service.yaml
+
+kubectl get svc
+
+minkube ssh 
+
+
+kubectl apply -f .\kubernetes\flask_ingress.yaml
+kubectl get ing 
+
+
+kubectl delete deploy NAME
+kubectl delete service NAME
+

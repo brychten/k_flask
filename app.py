@@ -1,8 +1,8 @@
 import datetime
+import uuid
 
 from flask import request, Flask
 import pandas as pd 
-
 from ms.functions import get_model_response
 
 # Initialize App
@@ -13,6 +13,12 @@ model_name = "Breast Cancer Wisconsin (Diagnostic)"
 model_file = "model_binary.dat.gz"
 #
 version = "v1.0.0"
+instance_id = uuid.uuid4().hex
+
+
+@app.route("/")
+def get_instance_id():
+    return f"Instance ID: {instance_id}"
 
 @app.route("/info", methods=["GET"])
 def info():
