@@ -19,14 +19,36 @@ kubectl apply -f .\kubernetes\flask_service.yaml
 
 kubectl get svc
 
-minkube ssh 
+minkube ssh y luego curl ipPOD:5000 devuelve el instanceId.
 
 
 kubectl apply -f .\kubernetes\flask_ingress.yaml
 kubectl get ing 
 
 
+kubectl delete -n default ingress flask-app-ingress
 kubectl delete deploy NAME
 kubectl delete service NAME
 
-https://www.youtube.com/watch?v=-g9r8BSlDFI
+Para habilitar ingress: 
+minikube addons enable ingress
+minikube tunnel 
+
+Referencia: https://www.youtube.com/watch?v=-g9r8BSlDFI
+
+
+
+Para usar Kompose
+Parado en el directorio del docker-compose 
+kompose convert
+kubectl apply -f a cada uno de los yaml. 
+
+minikube service command 
+minikube service nombre 
+
+kubectl describe svc nombre
+
+
+Si se usa un proveedor, la ip está en LoadBalancerIngress IP 
+Sino correr y no usar ingress 
+kubectl expose deployment NOMBRE --type="LoadBalancer" 
